@@ -1,0 +1,118 @@
+import React, { useState } from 'react';
+import { Play, ChevronDown, Star, Truck, Users, Clock } from 'lucide-react';
+
+const HomePage = () => {
+  const [openFaq, setOpenFaq] = useState(null);
+
+  const toggleFaq = (index) => {
+    setOpenFaq(openFaq === index ? null : index);
+  };
+
+  return (
+    <div className="min-h-screen bg-gray-900 text-white">
+      {/* Video Banner Section */}
+      <div className="relative h-[500px] w-full">
+        <div className="absolute inset-0 bg-black/50 z-10"></div>
+        <img
+          src="/api/placeholder/1920/500"
+          alt="Truck on road"
+          className="w-full h-full object-cover"
+        />
+        <div className="absolute inset-0 z-20 flex flex-col items-center justify-center text-center">
+          <h1 className="text-5xl font-bold mb-4">
+            Your Reliable & <br />
+            Trusted Transport <br />
+            Services Provider
+          </h1>
+          <p className="text-gray-300 mb-6">Lorem ipsum dolor sit amet consectetur adipisicing elit.</p>
+          <button className="bg-yellow-400 text-black px-8 py-3 rounded-full flex items-center gap-2 hover:bg-yellow-500">
+            <Play className="w-5 h-5" /> Watch Video
+          </button>
+        </div>
+      </div>
+
+      {/* Statistics Section */}
+      <div className="container mx-auto px-4 py-16">
+        <h2 className="text-3xl font-bold text-center mb-12">Largest Trucking Platform</h2>
+        <div className="grid grid-cols-3 gap-8">
+          {[
+            { icon: <Truck className="w-12 h-12" />, title: "500+", description: "Verified Transporters" },
+            { icon: <Users className="w-12 h-12" />, title: "50,000+", description: "Active Customers" },
+            { icon: <Clock className="w-12 h-12" />, title: "98%", description: "On-time Delivery" }
+          ].map((stat, index) => (
+            <div key={index} className="text-center">
+              <div className="flex justify-center mb-4">{stat.icon}</div>
+              <h3 className="text-2xl font-bold mb-2">{stat.title}</h3>
+              <p className="text-gray-400">{stat.description}</p>
+            </div>
+          ))}
+        </div>
+      </div>
+
+      {/* Mobile App Section */}
+      <div className="container mx-auto px-4 py-16">
+        <div className="grid grid-cols-2 gap-12 items-center">
+          <div>
+            <h2 className="text-3xl font-bold mb-6">
+              Trusted by 50,000+ <br />
+              happy customers!
+            </h2>
+            <div className="space-y-6 mb-8">
+              {[1, 2, 3].map((review) => (
+                <div key={review} className="flex items-start gap-4">
+                  <div className="bg-gray-800 p-2 rounded-full">
+                    <Star className="w-6 h-6 text-yellow-400" />
+                  </div>
+                  <div>
+                    <h4 className="font-bold mb-1">Happy Customer {review}</h4>
+                    <p className="text-gray-400">Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
+                  </div>
+                </div>
+              ))}
+            </div>
+            <div className="flex gap-4">
+              <img src="/api/placeholder/140/42" alt="App Store" className="h-[42px] object-contain" />
+              <img src="/api/placeholder/140/42" alt="Play Store" className="h-[42px] object-contain" />
+            </div>
+          </div>
+          <div className="relative">
+            <img src="/api/placeholder/400/600" alt="Mobile App" className="w-full" />
+          </div>
+        </div>
+      </div>
+
+      {/* FAQ Section */}
+      <div className="container mx-auto px-4 py-16">
+        <h2 className="text-3xl font-bold text-center mb-12">FAQs</h2>
+        <div className="max-w-3xl mx-auto space-y-4">
+          {[
+            { q: "How do I book a truck?", a: "Lorem ipsum dolor sit amet consectetur adipisicing elit." },
+            { q: "What types of vehicles are available?", a: "Lorem ipsum dolor sit amet consectetur adipisicing elit." },
+            { q: "How do I track my shipment?", a: "Lorem ipsum dolor sit amet consectetur adipisicing elit." },
+            { q: "What payment methods do you accept?", a: "Lorem ipsum dolor sit amet consectetur adipisicing elit." }
+          ].map((faq, index) => (
+            <div 
+              key={index}
+              className="bg-gray-800 rounded-lg overflow-hidden"
+            >
+              <button
+                className="w-full px-6 py-4 flex justify-between items-center text-left"
+                onClick={() => toggleFaq(index)}
+              >
+                <span className="font-semibold">{faq.q}</span>
+                <ChevronDown className={`w-5 h-5 transition-transform ${openFaq === index ? 'rotate-180' : ''}`} />
+              </button>
+              {openFaq === index && (
+                <div className="px-6 py-4 text-gray-400 border-t border-gray-700">
+                  {faq.a}
+                </div>
+              )}
+            </div>
+          ))}
+        </div>
+      </div>
+    </div>
+  );
+};
+
+export default HomePage;

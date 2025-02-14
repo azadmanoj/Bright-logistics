@@ -1,0 +1,140 @@
+import React from 'react';
+import { Star, Shield, Map, DollarSign, Navigation, Truck } from 'lucide-react';
+
+const HomePage = () => {
+  return (
+    <div className="min-h-screen bg-gray-900 text-white">
+      {/* Navigation */}
+      <nav className="container mx-auto px-4 py-4 flex justify-between items-center">
+        <div className="text-xl font-bold">TRANSPORT</div>
+        <div className="flex gap-6">
+          <a href="#" className="hover:text-yellow-400">Home</a>
+          <a href="#" className="hover:text-yellow-400">Movers & Packers</a>
+          <a href="#" className="hover:text-yellow-400">Truck Partners</a>
+          <a href="#" className="hover:text-yellow-400">For Enterprise</a>
+          <button className="bg-yellow-400 text-black px-4 py-2 rounded-md hover:bg-yellow-500">
+            Log In
+          </button>
+        </div>
+      </nav>
+
+      {/* Hero Section */}
+      <div className="container mx-auto px-4 py-12 grid grid-cols-2 gap-8">
+        <div className="space-y-6">
+          <h1 className="text-5xl font-bold leading-tight">
+            Largest <span className="text-yellow-400">Marketplace</span>
+            <br />For Intracity Logistics
+          </h1>
+          <p className="text-gray-400 text-lg">
+            Online Transport & Shipping Services at Your Place
+          </p>
+
+          {/* Booking Form */}
+          <div className="bg-gray-800 p-6 rounded-lg space-y-4">
+            <div className="grid grid-cols-2 gap-4">
+              <div>
+                <label className="block text-sm text-gray-400">From</label>
+                <input
+                  type="text"
+                  placeholder="Enter your location"
+                  className="w-full bg-gray-700 p-2 rounded mt-1"
+                />
+              </div>
+              <div>
+                <label className="block text-sm text-gray-400">To</label>
+                <input
+                  type="text"
+                  placeholder="Enter your destination"
+                  className="w-full bg-gray-700 p-2 rounded mt-1"
+                />
+              </div>
+            </div>
+            <div className="grid grid-cols-2 gap-4">
+              <div>
+                <label className="block text-sm text-gray-400">Vehicle type</label>
+                <select className="w-full bg-gray-700 p-2 rounded mt-1">
+                  <option>Select vehicle</option>
+                </select>
+              </div>
+              <div>
+                <label className="block text-sm text-gray-400">Material weight</label>
+                <input
+                  type="number"
+                  placeholder="Enter weight in kg"
+                  className="w-full bg-gray-700 p-2 rounded mt-1"
+                />
+              </div>
+            </div>
+            <button className="w-full bg-yellow-400 text-black py-2 rounded hover:bg-yellow-500">
+              Book your truck
+            </button>
+          </div>
+        </div>
+
+        <div className="relative">
+          <img
+            src="/api/placeholder/600/400"
+            alt="Truck"
+            className="w-full object-contain"
+          />
+          <div className="absolute bottom-0 left-0 right-0 flex justify-center gap-4 p-4">
+            {['Logisticum', 'Logiteam', 'Logispeed', 'LOG'].map((partner) => (
+              <div key={partner} className="bg-gray-800 px-4 py-2 rounded">
+                {partner}
+              </div>
+            ))}
+          </div>
+        </div>
+      </div>
+
+      {/* Reviews Section */}
+      <div className="container mx-auto px-4 py-6">
+        <div className="bg-gray-800 rounded-lg p-4 flex items-center justify-between max-w-md">
+          <div className="flex items-center gap-2">
+            <img
+              src="/api/placeholder/24/24"
+              alt="Google"
+              className="w-6 h-6"
+            />
+            <span>Google Review</span>
+          </div>
+          <div className="flex items-center gap-1">
+            {[...Array(5)].map((_, i) => (
+              <Star key={i} className="w-4 h-4 fill-yellow-400 text-yellow-400" />
+            ))}
+          </div>
+        </div>
+      </div>
+
+      {/* Features Section */}
+      <div className="container mx-auto px-4 py-12">
+        <h2 className="text-3xl font-bold text-center mb-12">
+          Right Trucking Partner for Your Business
+        </h2>
+        <div className="grid grid-cols-4 gap-6">
+          {[
+            { icon: <Map className="w-8 h-8" />, title: "700+ Destinations" },
+            { icon: <DollarSign className="w-8 h-8" />, title: "Competitive Pricing" },
+            { icon: <Navigation className="w-8 h-8" />, title: "GPS Enabled Trucks" },
+            { icon: <Shield className="w-8 h-8" />, title: "Pre-Insured Trips" }
+          ].map((feature, index) => (
+            <div
+              key={index}
+              className={`p-6 rounded-lg text-center ${
+                index === 1 ? 'bg-yellow-400 text-black' : 'bg-gray-800'
+              }`}
+            >
+              <div className="flex justify-center mb-4">{feature.icon}</div>
+              <h3 className="font-bold mb-2">{feature.title}</h3>
+              <p className="text-sm">
+                Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+              </p>
+            </div>
+          ))}
+        </div>
+      </div>
+    </div>
+  );
+};
+
+export default HomePage;
